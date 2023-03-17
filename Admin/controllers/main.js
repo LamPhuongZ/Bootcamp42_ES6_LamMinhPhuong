@@ -511,7 +511,7 @@ function resetInputCustomer() {
     getElement("#tbCustomerEmail").style.display = "none";
     getElement("#tbCompanyName").style.display = "none";
     getElement("#tbInvoiceValue").style.display = "none";
-    getElement("#tblevaluate").style.display = "none";
+    getElement("#tblEvaluate").style.display = "none";
 
     getElement("#customerId").disabled = false;
 }
