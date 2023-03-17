@@ -183,6 +183,10 @@ window.updateStudent = () => {
     let physics = +getElement("#physics").value;
     let chemistry = +getElement("#chemistry").value;
 
+    if (!isValidateStudent()) {
+        return;
+    }
+
     const student = new Students(
         id,
         name,
@@ -213,6 +217,10 @@ window.updateEmployee = () => {
     let workDay = +getElement("#numberWorking").value;
     let salary = +getElement("#salaryByDay").value;
 
+    if (!isValidateEmployee()) {
+        return;
+    }
+
     const employee = new Employees(
         id,
         name,
@@ -241,6 +249,10 @@ window.updateCustomer = () => {
     let companyName = getElement("#companyName").value;
     let invoiceValue = getElement("#invoiceValue").value;
     let evaluate = getElement("#evaluate").value;
+
+    if (!isValidateCustomer()) {
+        return;
+    }
 
     const customer = new Customers(
         id,
