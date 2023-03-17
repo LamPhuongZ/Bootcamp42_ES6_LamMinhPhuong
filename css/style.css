@@ -1,0 +1,57 @@
+header {
+  background-color: #efd3df;
+  height: 90px;
+  width: 100%;
+}
+header .navbar {
+  background-color: #efd3df;
+  padding-top: 25px;
+}
+
+.carousel {
+  margin-top: 5rem;
+  background-color: #f3e2ea;
+}
+.carousel .carousel__content .card__header {
+  margin: 2rem;
+  color: #f752ba;
+}
+.carousel .carousel__content .card__header h1 {
+  text-transform: uppercase;
+}
+.carousel .carousel__content .card__body #btnAddStudent,
+.carousel .carousel__content .card__body #btnAddEmployee,
+.carousel .carousel__content .card__body #btnAddCustomer {
+  background-color: #efd3df;
+  color: black;
+}
+.carousel .carousel__content .card__body #tableProduct {
+  overflow-x: auto;
+}
+.carousel .carousel__content .card__body .carousel__select .card-group {
+  gap: 20px;
+}
+.carousel .carousel__content .card__body .carousel__select .card-group .form-select {
+  display: block;
+  padding: 7px 7px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+.carousel .carousel__modal .modal-header {
+  background-color: #efd3df;
+}
+.carousel .carousel__modal .modal-footer .btn__addStudent,
+.carousel .carousel__modal .modal-footer .btn__addEmployee,
+.carousel .carousel__modal .modal-footer .btn__addCustomer,
+.carousel .carousel__modal .modal-footer .btn__updateStudent,
+.carousel .carousel__modal .modal-footer .btn__updateEmployee,
+.carousel .carousel__modal .modal-footer .btn__updateCustomer {
+  background-color: #efd3df;
+}
+
+@media screen and (max-width: 992px) {
+  .carousel .carousel__content .card__header h1 {
+    font-size: 2.5rem;
+  }
+}/*# sourceMappingURL=style.css.map */

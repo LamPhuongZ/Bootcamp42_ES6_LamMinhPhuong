@@ -1,0 +1,79 @@
+.carousel {
+    margin-top: 5rem;
+    background-color: $color-pink;
+
+    & .carousel__content {
+
+        & .card__header {
+            margin: 2rem;
+            color: $color-pink-light;
+
+            & h1 {
+                // font-size: 4rem; 
+                text-transform: uppercase;
+            }
+        }
+
+        & .card__body {
+
+            #btnAddStudent,
+            #btnAddEmployee,
+            #btnAddCustomer {
+                background-color: $bg-color-pink-dark;
+                color: black;
+
+            }
+
+            #tableProduct {
+                overflow-x: auto;
+            }
+
+            & .carousel__select {
+                & .card-group {
+                    gap: 20px;
+
+                    & .form-select {
+                        display: block;
+                        padding: 7px 7px;
+                        line-height: 1.5;
+                        border-radius: 5px;
+                        border: 1px solid #ced4da;
+                    }
+                }
+            }
+        }
+
+    }
+
+    & .carousel__modal {
+        & .modal-header {
+            background-color: $bg-color-pink-dark;
+        }
+
+        & .modal-footer {
+
+            .btn__addStudent,
+            .btn__addEmployee,
+            .btn__addCustomer,
+            .btn__updateStudent,
+            .btn__updateEmployee,
+            .btn__updateCustomer {
+                background-color: $bg-color-pink-dark;
+            }
+        }
+    }
+}
+
+//Man hinh desktop tu 992px tro len
+@include responsive("lg") {
+    .carousel {
+        & .carousel__content {
+
+            & .card__header {
+                & h1 {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+}

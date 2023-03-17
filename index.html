@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PV's Phone | Admin</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Vy gan vao -->
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body>
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">QUẢN LÝ HỌC VIỆN</a>
+      </div>
+    </nav>
+  </header>
+  <!-- Admin Theme -->
+  <section class="carousel">
+    <div class="container-fluid py-5">
+      <div class="carousel__content">
+        <div class="card">
+          <!-- Header -->
+          <div class="card__header">
+            <h1 class="text-center font-weight-bold">Danh sách người dùng</h1>
+          </div>
+
+          <!-- Body -->
+          <div class="card__body">
+            <div class="d-flex justify-content-between mb-2 py-3 px-2">
+              <div class="text-left">
+                <!-- Button Add Student -->
+                <button id="btnAddStudent" class="btn" data-toggle="modal" data-target="#modalStudent" onclick="">
+                  <i class="fa-solid fa-circle-plus"></i> Add Student
+                </button>
+                <!-- End Button Add Student -->
+
+                <!-- Button Add Employee -->
+                <button id="btnAddEmployee" class="btn" data-toggle="modal" data-target="#modalEmployee" onclick="">
+                  <i class="fa-solid fa-circle-plus"></i> Add Employee
+                </button>
+                <!-- End Button Add Employee -->
+
+                <!-- Button Add Customer -->
+                <button id="btnAddCustomer" class="btn" data-toggle="modal" data-target="#modalCustomer" onclick="">
+                  <i class="fa-solid fa-circle-plus"></i> Add Customer
+                </button>
+                <!-- End Button Add Customer -->
+              </div>
+
+              <div class="text-right">
+                <div class="carousel__select">
+                  <div class="card-group container">
+                    <!-- Select type -->
+                    <select id="typePerson" class="form-select" onchange="sortPerson()">
+                      <option value="">All types</option>
+                      <option value="1">Student</option>
+                      <option value="2">Employee</option>
+                      <option value="3">Customer</option>
+                    </select>
+                    <!-- End Select type -->
+
+                    <!-- Select type -->
+                    <select id="sort" class="form-select" onchange="sortByName()">
+                      <option value="">Select Sort</option>
+                      <option value="sortName">Sort by Name</option>
+                    </select>
+                    <!-- End Select type -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table Info -->
+            <div id="tableInfo" class="tableInfo">
+              <table id="tblInfo" class="table display table-bordered table-hover dataTable dtr-inline">
+                <thead>
+                  <tr>
+                    <th>&num;</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th><i class="fa-solid fa-gear"></i>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="tblListInfo"></tbody>
+              </table>
+            </div>
+            <!-- End Table Info -->
+          </div>
+
+          <!-- Footer -->
+          <div class="card__footer"></div>
+        </div>
+      </div>
+
+      <!-- The Modal Student -->
+      <div class="modal fade carousel__modal" id="modalStudent">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title title__Student">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form class="form">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
+                    <input id="studentId" class="form-control" placeholder="ID" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbStudentId"></span>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                    <input id="studentName" class="form-control" placeholder="Student Name" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbStudentName"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-address-book"></i></span>
+                    <input id="studentAddress" class="form-control" placeholder="Address" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbStudentAddress"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                    <input id="studentEmail" class="form-control" placeholder="Email" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbStudentEmail"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
+                    <input type="number" id="math" class="form-control" placeholder="Math" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbMath"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
+                    <input type="number" id="physics" class="form-control" placeholder="Physics" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbPhysics"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
+                    <input type="number" id="chemistry" class="form-control" placeholder="Chemistry" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbChemistry"></span>
+                </div>
+              </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer footer__Student"></div>
+          </div>
+        </div>
+      </div>
+      <!-- End The Modal Student -->
+
+      <!-- The Modal Employee -->
+      <div class="modal fade carousel__modal" id="modalEmployee">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title title__Employee">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form class="form">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
+                    <input id="employeeId" class="form-control" placeholder="ID" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbEmployeeId"></span>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                    <input id="employeeName" class="form-control" placeholder="Employee Name" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbEmployeeName"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-address-book"></i></span>
+                    <input id="employeeAddress" class="form-control" placeholder="Address" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbEmployeeAddress"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                    <input id="employeeEmail" class="form-control" placeholder="Email" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbEmployeeEmail"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                    <input type="number" id="numberWorking" class="form-control" placeholder="Number of working days" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbNumberWorking"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+                    <input type="number" id="salaryByDay" class="form-control" placeholder="Salary by day" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbSalaryByDay"></span>
+                </div>
+              </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer footer__Employee"></div>
+          </div>
+        </div>
+      </div>
+      <!-- End The Modal Employee -->
+
+      <!-- The Modal Customer -->
+      <div class="modal fade carousel__modal" id="modalCustomer">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title title__Customer">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form class="form">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
+                    <input id="customerId" class="form-control" placeholder="ID" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbCustomerId"></span>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                    <input id="customerName" class="form-control" placeholder="Customer Name" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbCustomerName"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-address-book"></i></span>
+                    <input id="customerAddress" class="form-control" placeholder="Address" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbCustomerAddress"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                    <input id="customerEmail" class="form-control" placeholder="Email" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbCustomerEmail"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-building"></i></span>
+                    <input id="companyName" class="form-control" placeholder="Company name" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbCompanyName"></span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+                    <input id="invoiceValue" class="form-control" placeholder="Invoice value" />
+                  </div>
+
+                  <span class="sp-thongbao" id="tbInvoiceValue"></span>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                    </div>
+                    <select class="form-control" id="evaluate">
+                      <option>Select brand</option>
+                      <option>Good</option>
+                      <option>Bad</optionalue>
+                    </select>
+                  </div>
+
+                  <span class="sp-thongbao" id="tbEvaluate"></span>
+                </div>
+              </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer footer__Customer"></div>
+          </div>
+        </div>
+      </div>
+      <!-- End The Modal Customer -->
+
+      <div class="modal fade carousel__modal" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="details"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="detailsHeader">
+                <i class="fa fa-cart-plus"> Details </i>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detailsBody"></div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+
+  <!-- <script src="./Admin/models/ListPerson.js"></script> -->
+  <script type="module" src="./Admin/controllers/main.js"></script>
+</body>
+
+</html>
