@@ -1,9 +1,9 @@
 import { Persons } from "../models/Persons.js";
 
 export class Students extends Persons {
-    constructor(id, name, address, email, maths, physics, chemistry) {
+    constructor(id, name, address, email, math, physics, chemistry) {
         super(id, name, address, email),
-            this.maths = +maths,
+            this.math = +math,
             this.physics = +physics,
             this.chemistry = +chemistry
     }
