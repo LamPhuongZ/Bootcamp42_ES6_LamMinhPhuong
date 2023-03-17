@@ -466,14 +466,14 @@ function resetInputCustomer() {
     getElement("#customerEmail").value = "";
     getElement("#companyName").value = "";
     getElement("#invoiceValue").value = "";
-    getElement("#evaluate").value = "Select brand";
+    getElement("#evaluate").value = "";
     getElement("#tbCustomerId").style.display = "none";
     getElement("#tbCustomerName").style.display = "none";
     getElement("#tbCustomerAddress").style.display = "none";
     getElement("#tbCustomerEmail").style.display = "none";
     getElement("#tbCompanyName").style.display = "none";
     getElement("#tbInvoiceValue").style.display = "none";
-    getElement("#tblEvaluate").style.display = "none";
+    getElement("#tbEvaluate").style.display = "none";
 
     getElement("#customerId").disabled = false;
 }
