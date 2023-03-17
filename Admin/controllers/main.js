@@ -1,52 +1,9 @@
-// import { ListPerson } from "../models/ListPerson.js";
 import { Students } from "../models/Students.js";
 import { Employees } from "../models/Employees.js";
 import { Customers } from "../models/Customers.js";
-// class Persons {
-//     constructor(id, name, address, email) {
-//         this.id = id,
-//             this.name = name,
-//             this.address = address,
-//             this.email = email
-//     }
-// }
-
-// class Students extends Persons {
-//     constructor(id, name, address, email, math, physics, chemistry) {
-//         super(id, name, address, email),
-//             this.math = +math,
-//             this.physics = +physics,
-//             this.chemistry = +chemistry
-//     }
-
-//     calcAverage() {
-//         return Math.round((this.math + this.physics + this.chemistry) / 3);
-//     }
-// }
-
-// class Employees extends Persons {
-//     constructor(id, name, address, email, workDay, salary) {
-//         super(id, name, address, email),
-//             this.workDay = +workDay, // số ngày làm
-//             this.salary = +salary // lương theo ngày
-//     }
-
-//     calcSalary() {
-//         return this.workDay * this.salary;
-//     }
-// }
-
-// class Customers extends Persons {
-//     constructor(id, name, address, email, companyName, invoiceValue, evaluate) {
-//         super(id, name, address, email),
-//             this.companyName = companyName,
-//             this.invoiceValue = invoiceValue, // trị giá hóa đơn
-//             this.evaluate = evaluate // đánh giá
-//     }
-// }
 
 let personList = getPersonList();
-// let sortFlag = "";
+let sortFlag = "";
 
 renderPerson(personList);
 
@@ -74,12 +31,7 @@ window.createStudent = () => {
         chemistry
     );
 
-    let index = personList.findIndex(person => person.id === id);
-    if (index === -1) {
-        personList.push(student);
-    } else {
-        personList[index] = student;
-    }
+    personList.push(student);
 
     renderPerson(personList);
 
@@ -110,12 +62,7 @@ window.createEmployee = () => {
         salary
     );
 
-    let index = personList.findIndex(person => person.id === id);
-    if (index === -1) {
-        personList.push(employee);
-    } else {
-        personList[index] = employee;
-    }
+    personList.push(employee);
 
     renderPerson(personList);
 
@@ -148,12 +95,8 @@ window.createCustomer = () => {
         evaluate
     );
 
-    let index = personList.findIndex(person => person.id === id);
-    if (index === -1) {
-        personList.push(customer);
-    } else {
-        personList[index] = customer;
-    }
+
+    personList.push(customer);
 
     renderPerson(personList);
 
@@ -320,7 +263,7 @@ window.updateCustomer = () => {
 }
 
 // Xóa người dùng
-function deletePerson(personId) {
+window.deletePerson = (personId) => {
     personList = personList.filter((person) => {
         return person.id !== personId;
     });
@@ -331,7 +274,7 @@ function deletePerson(personId) {
 }
 
 // Lọc danh sách người dùng theo loại người dùng
-function sortPerson() {
+window.sortPerson = () => {
     let type = getElement("#typePerson").value;
     let result = "";
     switch (type) {
@@ -355,30 +298,49 @@ function sortPerson() {
 }
 
 // Sắp xếp danh sách theo thứ tự họ tên
-function sortByName() {
-    // if (!sortFlag || sortFlag === "desc") {
-    //     personList.sort((a, b) => a.name - b.name);
-    //     sortFlag = "asc";
-    // } else if (sortFlag === "asc") {
-    //     personList.sort((a, b) => b.name - a.name);
-    //     sortFlag = "desc";
-    // }
-
-    let sort = getElement("#sort").value;
-    let result = "";
-
-    if (sort) {
-        result = personList.sort((a, b) => {
+window.sortByName = () => {
+    if (!sortFlag || sortFlag === "desc") {
+        personList.sort((a, b) => {
             if (a.name < b.name) {
                 return -1;
-            } else {
+            }
+            else {
                 return 1;
             }
         });
+        sortFlag = "asc";
+    } else if (sortFlag === "asc") {
+        personList.sort((a, b) => {
+            if (a.name > b.name) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        });
+        sortFlag = "desc";
     }
 
-    renderPerson(result);
+    renderPerson(personList);
+
+
+    // let sort = getElement("#sort").value;
+    // let result = "";
+
+    // if (sort) {
+    //     result = personList.sort((a, b) => {
+    //         if (a.name < b.name) {
+    //             return -1;
+    //         } else {
+    //             return 1;
+    //         }
+    //     });
+    // }
+
+    // renderPerson(result);
 }
+getElement("#sort").onclick = sortByName;
+
 
 // Hàm hiển thị danh sách học viện ra table
 function renderPerson(persons) {
@@ -405,7 +367,7 @@ function renderPerson(persons) {
 }
 
 // Hàm hiển thị chi tiết của các type
-function renderDetails(personId) {
+window.renderDetails = (personId) => {
     let person = personList.find(person => person.id === personId);
     getElement("#detailsHeader").innerHTML = person.constructor.name + " - " + person.name;
     let html = `
